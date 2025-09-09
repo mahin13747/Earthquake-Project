@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Global Earthquake Tracker</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="earthquake.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-globe-americas"></i>
+                    <h1>Global Earthquake Tracker</h1>
+                </div>
+                <div class="last-updated">Last updated: <span id="update-time">Loading...</span></div>
+            </div>
+        </header>
+        
+        <div class="content">
+            <div class="sidebar">
+                <div class="panel">
+                    <h2><i class="fas fa-chart-bar"></i> Today's Seismic Activity</h2>
+                    <div class="stats-grid">
+                        <div class="stat-box">
+                            <div class="stat-value" id="total-earthquakes">0</div>
+                            <div class="stat-label">Total Earthquakes</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-value" id="largest-mag">0.0</div>
+                            <div class="stat-label">Largest Magnitude</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-value" id="deepest">0</div>
+                            <div class="stat-label">Deepest (km)</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-value" id="shallowest">0</div>
+                            <div class="stat-label">Shallowest (km)</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="panel">
+                    <h2><i class="fas fa-filter"></i> Filter Earthquakes</h2>
+                    <div class="controls">
+                        <div class="filter-control">
+                            <label>Magnitude: <span id="mag-value">2.5+</span></label>
+                            <div class="slider-container">
+                                <input type="range" id="mag-filter" min="0" max="8" step="0.5" value="2.5">
+                                <span class="slider-value" id="mag-display">2.5</span>
+                            </div>
+                        </div>
+                        
+                        <div class="filter-control">
+                            <label>Depth (km): <span id="depth-value">All</span></label>
+                            <div class="slider-container">
+                                <input type="range" id="depth-filter" min="0" max="300" step="10" value="300">
+                                <span class="slider-value" id="depth-display">300+</span>
+                            </div>
+                        </div>
+                        
+                        <button id="refresh-btn" class="refresh-btn">
+                            <i class="fas fa-sync-alt"></i> Refresh Data
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="panel">
+                    <h2><i class="fas fa-list"></i> Recent Earthquakes</h2>
+                    <div class="earthquake-list" id="earthquake-list">
+                        <div class="loading">
+                            <i class="fas fa-spinner"></i> Loading earthquakes...
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="map-container">
+                <div id="map"></div>
+            </div>
+        </div>
+    </div>
+
+   <script src="earthquake.js"></script>
+</body>
+</html>
